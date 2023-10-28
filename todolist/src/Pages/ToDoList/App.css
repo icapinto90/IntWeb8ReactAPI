@@ -1,0 +1,50 @@
+.App {
+  text-align: center;
+}
+
+/* ListTask */
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Task */
+
+.task {
+  margin: auto;
+  padding-bottom: 10px;
+}
+
+.task > label {
+  margin: 0 40px 0 40px;
+}
+
+.task.checked > label,
+.task.checked > span {
+  color: #21ba45;
+  opacity: 0.4;
+}
+
+/* ModalContent css */
+.modal {
+  width: 300px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+}
+.error {
+  background-color: #c10015;
+  color: white;
+}
+
+.success {
+  background-color: #21ba45;
+  color: white;
+}
