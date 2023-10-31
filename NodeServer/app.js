@@ -5,7 +5,7 @@ const cors = require("cors");
 const fs = require("fs");
 const { error } = require("console");
 const filePath = "./tasks.json";
-const _ = require("lodash");
+const _ = require("lodash/array");
 
 app.use(cors());
 app.use(express.json());

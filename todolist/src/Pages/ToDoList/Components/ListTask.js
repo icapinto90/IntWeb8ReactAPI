@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Task } from "./Task";
 import { tasksContext } from "../App";
+import axios from "axios";
 
 //creating context
 export const checkedTasks = createContext();
@@ -15,25 +16,34 @@ export default function ListTask() {
     setCheckedTasksContext((arr) => arr.filter((item) => item !== taskName));
     setTasks(tasksCopy.filter((e) => e));
   };
+  const handleCompleted = () => {};
+
+  useEffect(() => {
+    async function fetchData() {
+      const req = await axios.get("http://localhost:3001/tasks");
+      setTasks(req.data.tasks);
+    }
+    fetchData();
+  }, []);
 
   return (
     <div>
       <h2>Liste des tâches : </h2>
       <ul className="tasks">
-        {tasks.map((name) => {
+        {tasks.map((task) => {
           return (
             <checkedTasks.Provider
               value={[checkedTasksContext, setCheckedTasksContext]}
             >
               <Task
-                checked={checkedTasksContext.includes(name)}
-                classTask={
-                  checkedTasksContext.includes(name) ? "task checked" : "task"
-                }
+                classTask={task.completed ? "task checked" : "task"}
                 onDelete={(el) => {
                   handleDelete(el.target.id);
                 }}
-                task={{ name }}
+                onComplete={(el) => {
+                  handleCompleted(el.target.id);
+                }}
+                task={task}
               ></Task>
             </checkedTasks.Provider>
           );

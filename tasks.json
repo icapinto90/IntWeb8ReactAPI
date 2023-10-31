@@ -1,0 +1,7 @@
+{
+  "tasks": [
+    { "name": "bonjour", "completed": false },
+    { "name": "bonjour2", "completed": true },
+    { "name": "bonjour3", "completed": true }
+  ]
+}
