@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { Task } from "./Task";
 import { tasksContext } from "../App";
 import axios from "axios";
-import _ from "lodash/array";
 const backendPort = "3001";
 const backendUrl = `http://localhost:${backendPort}`;
 
