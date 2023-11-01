@@ -42,6 +42,7 @@ export default function App() {
         completed: false,
       });
       fetchData();
+      setTaskAdd("");
     }
     setShowModal(true);
     closeModal();
