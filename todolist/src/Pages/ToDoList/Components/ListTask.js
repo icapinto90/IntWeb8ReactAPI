@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { Task } from "./Task";
 import { tasksContext } from "../App";
 import axios from "axios";
