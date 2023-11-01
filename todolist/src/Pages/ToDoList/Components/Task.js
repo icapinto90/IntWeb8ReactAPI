@@ -1,6 +1,4 @@
-export function Task({ task, onDelete, classTask, checked, onComplete }) {
-  // eslint-disable-next-line no-unused-vars
-
+export function Task({ task, onDelete, classTask, onComplete }) {
   return (
     <li key={task.name} className={classTask}>
       <span>{task.name}</span>

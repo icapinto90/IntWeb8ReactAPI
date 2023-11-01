@@ -20,6 +20,7 @@ export default function ListTask() {
     fetchData();
   };
 
+  //fetch data from backend
   async function fetchData() {
     const req = await axios.get(`${backendUrl}/tasks`);
     setTasks(req.data.tasks);
