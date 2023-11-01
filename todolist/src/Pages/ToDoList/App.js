@@ -1,8 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { createPortal } from "react-dom";
 import ListTask from "./Components/ListTask";
 import ModalContent from "../../Components/ModalContent";
 import "./App.css";
+import axios from "axios";
+const backendPort = "3001";
+const backendUrl = `http://localhost:${backendPort}`;
 
 //creating context
 export const tasksContext = createContext();
@@ -16,21 +19,29 @@ export default function App() {
   const [modalType, setModalType] = useState("");
   const [modalTimeOut, setModalTimeOut] = useState("");
 
+  async function fetchData() {
+    const req = await axios.get(`${backendUrl}/tasks`);
+    setTasks(req.data.tasks);
+  }
+
   //add tasks
-  function addTask() {
+  async function addTask() {
     if (!taskAdd) {
       setModalText("Veuillez remplir le champ");
       setModalType("error");
     } else {
-      if (tasks.includes(taskAdd)) {
+      if (tasks.some((e) => e.name === taskAdd)) {
         setModalText("Tâche déjà existante");
         setModalType("error");
         return;
       }
       setModalType("success");
       setModalText("Action réussie");
-      setTasks((arr) => [...arr, taskAdd]);
-      setTaskAdd("");
+      await axios.post(`${backendUrl}/tasks`, {
+        name: taskAdd,
+        completed: false,
+      });
+      fetchData();
     }
     setShowModal(true);
     closeModal();
